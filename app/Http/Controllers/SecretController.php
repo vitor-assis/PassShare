@@ -100,7 +100,7 @@ class SecretController extends Controller
         $secret = Secret::where('hash', $request->hash)->first();
 
         if (!$secret || ($secret->expires_at && now()->greaterThan($secret->expires_at))) {
-            return view('expired');
+            return view('errors.expired');
         }
 
         if ($secret->type === 'text') {
