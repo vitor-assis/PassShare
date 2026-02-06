@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SecretController;
 
 // Rota da Página Inicial (Formulário)
+Route::get('/lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'es', 'pt'])) {
+        abort(400);
+    }
+    session(['locale' => $locale]);
+    return back();
+});
+
 Route::get('/', [SecretController::class, 'create'])->name('secret.create');
 
 // Rota que recebe o envio do formulário (POST)

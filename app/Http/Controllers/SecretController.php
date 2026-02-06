@@ -28,7 +28,7 @@ class SecretController extends Controller
         ]);
 
         if (!$request->message && !$request->hasFile('file')) {
-            return back()->withErrors(['message' => 'Você precisa enviar um texto ou um arquivo.']);
+            return back()->withErrors(['message' => __('Você precisa enviar um texto ou um arquivo.')]);
         }
 
         $expiresAt = null;
@@ -158,7 +158,7 @@ class SecretController extends Controller
 
         // 1. Pega o caminho físico completo do arquivo (ex: C:\laragon\www\storage\app\secrets\...)
         if (!Storage::exists($secret->file_path)) {
-            abort(404, 'Arquivo físico não encontrado.');
+            abort(404, __('Arquivo físico não encontrado.'));
         }
         $fullPath = Storage::path($secret->file_path);
 
